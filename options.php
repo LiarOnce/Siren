@@ -302,7 +302,7 @@ function optionsframework_options() {
 
 	 $options[] = array(
 		'name' => __('视频名称', 'options_framework_theme'),
-		'desc' => __('abc.mp4 ，只需要填写视频文件名 abc 即可，多个用英文逗号隔开如 abc,efg ，无需在意顺序，因为加载是随机的抽取的 ', 'options_framework_theme'),
+		'desc' => __('abc.mp4 ，只需要填写视频名称 abc 即可，多个用英文逗号隔开如 abc,efg ，无需在意顺序，因为加载是随机的抽取的 ', 'options_framework_theme'),
 		'id' => 'amv_title',
 		'std' => '',
 		'type' => 'text');
@@ -401,6 +401,7 @@ function optionsframework_options() {
 			'no' => __('关闭', '')
 		));
 
+	//打赏选项
 	$options[] = array(
 		'name' => __('支付宝打赏', 'options_framework_theme'),
 		'desc' => __('支付宝二维码', 'options_framework_theme'),
@@ -411,7 +412,20 @@ function optionsframework_options() {
 		'name' => __('微信打赏', 'options_framework_theme'),
 		'desc' => __('微信二维码', 'options_framework_theme'),
 		'id' => 'wechat_code',
-		'type' => 'upload');	
+		'type' => 'upload');
+		
+	$options[] = array(
+		'name' => __('QQ打赏', 'options_framework_theme'),
+		'desc' => __('QQ钱包二维码', 'options_framework_theme'),
+		'id' => 'tenpay_code',
+		'type' => 'upload');
+		
+	$options[] = array(
+		'name' => __('PayPal', 'options_framework_theme'),
+		'desc' => __('PayPal.Me收款地址', 'options_framework_theme'),
+		'id' => 'paypal',
+		'std' => '',
+		'type' => 'text');
 
 		
 	//社交选项
@@ -425,7 +439,7 @@ function optionsframework_options() {
 		'id' => 'wechat',
 		'type' => 'upload');
 	
-    $options[] = array(
+        $options[] = array(
 		'name' => __('新浪微博', 'options_framework_theme'),
 		'desc' => __('新浪微博地址', 'options_framework_theme'),
 		'id' => 'sina',

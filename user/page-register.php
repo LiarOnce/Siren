@@ -84,7 +84,7 @@ if( !empty($_POST['register_reg']) ) {
 				</form>
 			</div>
 		<?php }else{ 
-		$loadurl = akina_option('exlogin_url') ? akina_option('exlogin_url') : get_bloginfo('url');
+		$loadurl = akina_option('exlogin_url') ? akina_option('exlogin_url') : home_url();
 		?>
 		<script>//window.location.href='<?php echo $loadurl; ?>';</script>
 		<?php } ?>
@@ -194,4 +194,4 @@ get_footer();
 		return milliSeconds;
 	}
 </script>
-<script type='text/javascript' src='<?php bloginfo("template_url"); ?>/user/verification.js'></script>
+<script type='text/javascript' src='<?php echo esc_url( get_template_directory_uri() ) ?>/user/verification.js'></script>
