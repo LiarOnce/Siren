@@ -98,6 +98,11 @@ function akina_setup() {
 		'image',
 		'status',
 	) );
+	
+	/*
+	 * Enable support for Automatic feed links
+	 */
+	add_theme_support('automatic-feed-links');
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'akina_custom_background_args', array(
@@ -336,6 +341,11 @@ function specs_zan(){
     die;
 }
 
+//Add title_tag
+function theme_slug_setup() {
+   add_theme_support( 'title-tag' );
+}
+add_action( 'after_setup_theme', 'theme_slug_setup' );
 
 /*
  * 友情链接
@@ -554,7 +564,39 @@ function wpdaxue_author_link( $link, $author_id, $author_nicename )
     return $link;
 }
 
-
+/**
+ * 修改评论回复按钮链接
+ */
+global $wp_version;
+if (version_compare($wp_version, '5.1.1', '>=')) {
+    add_filter('comment_reply_link', 'haremu_replace_comment_reply_link', 10, 4);
+    function haremu_replace_comment_reply_link($link, $args, $comment, $post)
+    {
+        if (get_option('comment_registration') && !is_user_logged_in()) {
+            $link = sprintf(
+                '<a rel="nofollow" class="comment-reply-login" href="%s">%s</a>',
+                esc_url(wp_login_url(get_permalink())),
+                $args['login_text']
+            );
+        } else {
+            $onclick = sprintf(
+                'return addComment.moveForm( "%1$s-%2$s", "%2$s", "%3$s", "%4$s" )',
+                $args['add_below'],
+                $comment->comment_ID,
+                $args['respond_id'],
+                $post->ID
+            );
+            $link = sprintf(
+                "<a rel='nofollow' class='comment-reply-link' href='%s' onclick='%s' aria-label='%s'>%s</a>",
+                esc_url(add_query_arg('replytocom', $comment->comment_ID, get_permalink($post->ID))) . "#" . $args['respond_id'],
+                $onclick,
+                esc_attr(sprintf($args['reply_to_text'], $comment->comment_author)),
+                $args['reply_text']
+            );
+        }
+        return $link;
+    }
+}
 
 /*
  * 阻止站内文章互相Pingback 

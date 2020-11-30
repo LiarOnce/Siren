@@ -88,18 +88,5 @@
 <script type="text/javascript"><?php echo akina_option('site_statistics'); ?></script>
 </div>
 <?php } ?>
-<script>
-var reloadowo = function () {
-	var OwO_demo = new OwO({
-    	logo: '表情 and Lanugage',
-    	container: document.getElementsByClassName('OwO')[0],
-    	target: document.getElementsByClassName('commentbody')[0],
-   		api: 'https://www.liaronce.win/wp-content/OwO.json ',
-    	position: 'down',
-    	width: '100%',
-    	maxHeight: '250px'
-	});
-};
-</script>
 </body>
 </html>

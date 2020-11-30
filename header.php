@@ -1,4 +1,4 @@
-<?php
+							<?php
 /**
  * The header for our theme.
  *
@@ -15,11 +15,12 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-transform " /> 
-<title itemprop="name"><?php global $page, $paged;wp_title( '-', true, 'right' );
-bloginfo( 'name' );$site_description = get_bloginfo( 'description', 'display' );
+<title itemprop="name"><?php global $page;
+bloginfo('name');$site_description = get_bloginfo( 'description', 'display' );
 if ( $site_description && ( is_home() || is_front_page() ) ) echo " - $site_description";if ( $paged >= 2 || $page >= 2 ) echo ' - ' . sprintf( __( '第 %s 页'), max( $paged, $page ) );?>
 </title>
 <?php
+header("Strict-Transport-Security: max-age=63072000; includeSubdomains; preload");
 if (akina_option('akina_meta') == true) {
 	$keywords = '';
 	$description = '';

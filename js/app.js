@@ -578,18 +578,12 @@ var reloadowo = function () {
     	logo: '表情 and Lanugage',
     	container: document.getElementsByClassName('OwO')[0],
     	target: document.getElementsByClassName('commentbody')[0],
-   		api: 'https://www.liaronce.win/wp-content/OwO.json ',
+   		api: 'https://www.liaronce.com/wp-content/OwO.json ',
     	position: 'down',
     	width: '100%',
     	maxHeight: '250px'
 	});
 };
-
-var loadpiwik = function() {
-	_paq.push(['setDocumentTitle', document.title]);
-    _paq.push(['trackPageView']);
-};
-
 // Executive function
 $(function() {
 
@@ -617,12 +611,9 @@ $(function() {
             Siren.PE();
             Siren.CE();
             reloadowo();
-			    loadpiwik();
             $("#loading").fadeOut(500);
+			$('pre').addClass("line-numbers").css("white-space", "pre-wrap");
             if(Poi.codelamp == 'open'){ self.Prism.highlightAll(event) }; // 解决Prism.js代码高亮
-            if (typeof _hmt !== 'undefined'){
-                 _hmt.push(['_trackPageview', location.pathname + location.search]);
-            }  
         }).on('submit', '.search-form,.s-search', function (event) {
             event.preventDefault();
             $.pjax.submit(event, '#page', {
